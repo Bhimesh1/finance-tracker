@@ -1,5 +1,6 @@
 package com.personalfinance.finance_tracker.controller;
 
+import com.personalfinance.finance_tracker.config.DataInitializer;
 import com.personalfinance.finance_tracker.dto.request.LoginRequest;
 import com.personalfinance.finance_tracker.dto.request.SignupRequest;
 import com.personalfinance.finance_tracker.dto.response.JwtResponse;
@@ -34,6 +35,9 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    DataInitializer dataInitializer;
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -67,7 +71,10 @@ public class AuthController {
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        // Create default categories for the new user
+        dataInitializer.createDefaultCategoriesForUser(savedUser);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
