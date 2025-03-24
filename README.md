@@ -1,310 +1,241 @@
-# Personal Finance Tracker - Phase 1
+# Personal Finance Tracker
 
-## Project Overview
-The Personal Finance Tracker is a Spring Boot application designed to help users manage their financial activities, track expenses, create budgets, and analyze their spending habits.
+A comprehensive financial management application built with Spring Boot that helps users track finances, set budgets, establish financial goals, and gain insights through analytics.
 
-## Phase 1 Accomplishments
-- Basic Spring Boot project setup
-- Database configuration with PostgreSQL
-- User registration and authentication system with JWT
-- Security configuration
-- Docker setup for containerization
-- Initial CI/CD pipeline with GitHub Actions
+## Project Motivation
 
-## Project Structure
-    src/main/java/com/personalfinance/finance_tracker/
+The Personal Finance Tracker addresses fundamental challenges in personal financial management:
 
-        ├── config/              # Configuration classes
-        ├── controller/          # REST controllers
-        ├── dto/                 # Data Transfer Objects
-        │   ├── request/         # Request DTOs
-        │   └── response/        # Response DTOs
-        ├── exception/           # Custom exceptions
-        ├── model/               # Entity classes
-        ├── repository/          # Spring Data JPA repositories
-        ├── security/            # Security related classes
-        │   └── jwt/             # JWT implementation
-        ├── service/             # Business logic layer
-        │   └── impl/            # Service implementations
-        └── util/                # Utility classes
+- **Financial Literacy Gap**: Makes financial tracking accessible with intuitive tools
+- **Comprehensive Integration**: Combines budgeting, expense tracking, and goal setting in one platform
+- **Data Privacy**: Secure, self-hosted solution for sensitive financial data
+- **Personalization**: Customizable tools that adapt to individual financial situations
 
+## Features
 
-## Technologies Used
-- Java 17
-- Spring Boot 3.x
-- Spring Security with JWT
-- Spring Data JPA
-- PostgreSQL
-- Docker & Docker Compose
-- Maven
-- GitHub Actions for CI/CD
+### User Management
+- Secure registration and authentication with JWT
+- Role-based access control
 
-## How to Run
-1. Clone the repository
-2. Make sure you have Docker and Docker Compose installed
-3. Run `docker-compose up` to start the application and database
-4. Access the application at http://localhost:8080
+### Account Management
+- Support for multiple account types (checking, savings, credit cards, investments)
+- Automatic balance tracking
 
-## API Endpoints
-- `POST /api/auth/signup` - Register a new user
-- `POST /api/auth/signin` - Authenticate and get JWT token
-- `GET /api/test/all` - Public content (test endpoint)
-- `GET /api/test/user` - Protected content (requires authentication)
+### Transaction Tracking
+- Record income, expenses, and transfers
+- Custom categorization
+- Advanced filtering and search capabilities
 
-## Next Steps (Phase 2)
-- Implement account management functionality
-- Create transaction recording system
-- Add category management for transactions
-- Implement basic reporting features
-
-
-## Phase 2 Accomplishments
-
-- Implemented core financial entity models (Accounts, Categories, Transactions)
-- Created repository interfaces for database operations
-- Developed DTOs for API request/response handling
-- Implemented service layer with business logic
-- Created RESTful controllers for entity operations
-- Added automatic account balance updates based on transactions
-- Implemented default category creation for new users
-
-## Database Schema
-The application now has the following main entities:
-
-- **Users**: Store user information and authentication details
-- **Accounts**: Different financial accounts owned by users
-- **Categories**: Transaction categorization for better organization
-- **Transactions**: Record of financial activities
-
-## API Endpoints
-Accounts
-
-- `GET /api/accounts` - Get all accounts for the authenticated user
-- `GET /api/accounts/{id}` - Get a specific account by ID
-- `POST /api/accounts` - Create a new account
-- `PUT /api/accounts/{id}` - Update an existing account
-- `DELETE /api/accounts/{id}` - Delete an account
-
-## Categories
-
-- `GET /api/categories` - Get all categories for the authenticated user
-- `GET /api/categories/type/{type}` - Get categories by type (INCOME or EXPENSE)
-- `GET /api/categories/{id}` - Get a specific category by ID
-- `POST /api/categories` - Create a new category
-- `PUT /api/categories/{id}` - Update an existing category
-- `DELETE /api/categories/{id}` - Delete a category
-
-Transactions
-
-- `GET /api/transactions` - Get paginated transactions for the authenticated user
-- `GET /api/transactions/{id}` - Get a specific transaction by ID
-- `GET /api/transactions/date-range` - Get transactions within a date range
-- `GET /api/transactions/account/{accountId}` - Get transactions for a specific account
-- `GET /api/transactions/category/{categoryId}` - Get transactions for a specific category
-- `GET /api/transactions/filter` - Advanced filtering with multiple criteria
-- `POST /api/transactions` - Create a new transaction
-- `PUT /api/transactions/{id}` - Update an existing transaction
-- `DELETE /api/transactions/{id}` - Delete a transaction
-
-## Key Features Implemented
-
-- Account Management: Create and manage different types of financial accounts
-- Transaction Recording: Track income and expenses with detailed information
-- Categorization: Organize transactions by custom categories
-- Automatic Balance Updates: Account balances update automatically based on transactions
-- Default Categories: New users get pre-populated categories for convenience
-- Flexible Filtering: Advanced search and filtering options for transactions
-
-## Security Features
-
-- All endpoints (except authentication) require JWT authentication
-- Users can only access their own data
-- Security is enforced at both controller and service layers
-
-## Next Steps (Phase 3)
-
-- Implement budget creation and tracking
-- Add financial goal setting and monitoring
-- Create notification system for budget alerts
-- Expand test coverage with integration tests
-
-
-## Phase 3 Accomplishments
-
-- Implemented budget creation and tracking for expense categories
-- Added financial goal setting and progress monitoring
-- Created notification system for budget alerts and goal deadlines
-- Implemented scheduled tasks for monitoring financial status
-- Enhanced transaction service to integrate with budget tracking
-
-## New Features
-### Budget Management
-
-- Set monthly spending limits for expense categories
-- Track actual spending against budgets
-- View budget utilization percentage
-- Receive alerts when approaching or exceeding budget limits
+### Budget Planning
+- Set monthly budgets by category
+- Real-time tracking against budgets
+- Visual progress indicators
 
 ### Financial Goals
-
-- Set savings targets with deadlines
-- Track progress towards financial goals
-- View percentage completion and days remaining
-- Automatic status updates when goals are achieved or deadlines pass
+- Create saving targets with deadlines
+- Track progress and completion status
+- Automatic status updates
 
 ### Notification System
-
-- Budget alerts when spending reaches thresholds
-- Goal deadline reminders and status updates
-- Large transaction alerts
-- System notifications
+- Budget threshold alerts
+- Goal deadline reminders
+- Large transaction notifications
 - Unread notification tracking
 
-## API Endpoints
-### Budgets
+### Analytics & Reporting
+- Expense breakdown by category
+- Income vs expense analysis
+- Monthly financial summaries
+- Account balance history
+- Export capabilities (CSV)
 
-- `GET /api/budgets` - Get all budgets for the authenticated user
-- `GET /api/budgets/period/{year}/{month}` - Get budgets for a specific period
-- `GET /api/budgets/{id}` - Get a specific budget by ID
+## Technology Stack
+
+- **Backend**: Java 17, Spring Boot 3.x
+- **Security**: Spring Security, JWT
+- **Database**: PostgreSQL, JPA/Hibernate
+- **Build Tool**: Maven
+- **Containerization**: Docker, Docker Compose
+- **CI/CD**: GitHub Actions
+
+## Project Structure
+
+```
+src/main/java/com/personalfinance/finance_tracker/
+├── config/              # Configuration classes
+├── controller/          # REST controllers
+├── dto/                 # Data Transfer Objects
+│   ├── request/         # Request DTOs
+│   └── response/        # Response DTOs
+├── exception/           # Custom exceptions
+├── model/               # Entity classes
+├── repository/          # Spring Data JPA repositories
+├── security/            # Security related classes
+│   └── jwt/             # JWT implementation
+├── service/             # Business logic layer
+│   └── impl/            # Service implementations
+└── util/                # Utility classes
+```
+
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/signup` - Register a new user
+- `POST /api/auth/signin` - Authenticate and get JWT token
+
+### Accounts
+- `GET /api/accounts` - Get all accounts
+- `GET /api/accounts/{id}` - Get account by ID
+- `POST /api/accounts` - Create a new account
+- `PUT /api/accounts/{id}` - Update an account
+- `DELETE /api/accounts/{id}` - Delete an account
+
+### Categories
+- `GET /api/categories` - Get all categories
+- `GET /api/categories/type/{type}` - Get categories by type
+- `GET /api/categories/{id}` - Get category by ID
+- `POST /api/categories` - Create a new category
+- `PUT /api/categories/{id}` - Update a category
+- `DELETE /api/categories/{id}` - Delete a category
+
+### Transactions
+- `GET /api/transactions` - Get paginated transactions
+- `GET /api/transactions/{id}` - Get transaction by ID
+- `GET /api/transactions/date-range` - Get transactions by date range
+- `GET /api/transactions/account/{accountId}` - Get transactions by account
+- `GET /api/transactions/category/{categoryId}` - Get transactions by category
+- `GET /api/transactions/filter` - Advanced filtering
+- `POST /api/transactions` - Create a new transaction
+- `PUT /api/transactions/{id}` - Update a transaction
+- `DELETE /api/transactions/{id}` - Delete a transaction
+
+### Budgets
+- `GET /api/budgets` - Get all budgets
+- `GET /api/budgets/period/{year}/{month}` - Get budgets for a period
+- `GET /api/budgets/{id}` - Get budget by ID
 - `POST /api/budgets` - Create a new budget
-- `PUT /api/budgets/{id}` - Update an existing budget
+- `PUT /api/budgets/{id}` - Update a budget
 - `DELETE /api/budgets/{id}` - Delete a budget
 
 ### Financial Goals
-
-- `GET /api/goals` - Get all financial goals for the authenticated user
-- `GET /api/goals/status/{status}` - Get goals by status (IN_PROGRESS, ACHIEVED, FAILED)
-- `GET /api/goals/{id}` - Get a specific goal by ID
-- `POST /api/goals` - Create a new financial goal
-- `PUT /api/goals/{id}` - Update an existing goal
+- `GET /api/goals` - Get all financial goals
+- `GET /api/goals/status/{status}` - Get goals by status
+- `GET /api/goals/{id}` - Get goal by ID
+- `POST /api/goals` - Create a new goal
+- `PUT /api/goals/{id}` - Update a goal
 - `PATCH /api/goals/{id}/progress` - Update goal progress
 - `DELETE /api/goals/{id}` - Delete a goal
 
 ### Notifications
-
-- `GET /api/notifications` - Get all notifications for the authenticated user
+- `GET /api/notifications` - Get all notifications
 - `GET /api/notifications/unread` - Get unread notifications
-- `GET /api/notifications/count` - Get count of unread notifications
-- `PATCH /api/notifications/{id}/read` - Mark a notification as read
-- `PATCH /api/notifications/read-all` - Mark all notifications as read
-
-## Scheduled Tasks
-
-- Daily budget checks to create notifications for budget thresholds
-- Daily goal deadline checks to update goal status and create reminders
-- Automatic updates for goals that have reached their deadlines
-
-## Next Steps (Phase 4)
-
-- Implement data analytics and reporting
-- Add expense breakdown by category
-- Create income vs expense tracking
-- Develop monthly/yearly financial reports
-- Implement visualization endpoints for charts and graphs
-
-
-
-
-
-## Phase 4 Accomplishments
-- Implemented comprehensive analytics and reporting features
-- Created data visualization endpoints for charts and graphs
-- Added expense breakdown by category analysis
-- Developed cash flow analysis for income vs expense tracking
-- Implemented monthly summary reports
-- Created account balance history tracking
-- Added data export capabilities for transactions and reports
-- Developed dashboard summary endpoint for quick financial overview
-
-## Analytics Features
-
-### Expense Breakdown
-- View expenses grouped by category
-- Calculate percentage of total spending by category
-- Filter by date range
-- Sort by amount or percentage
-
-### Cash Flow Analysis
-- Monthly income vs expense comparison
-- Breakdown of income and expenses by category
-- Calculate net cash flow (savings)
-- Visualize income and expense distribution
-
-### Monthly Summary
-- Track financial trends over time
-- View income, expenses, and savings for multiple months
-- Calculate savings rate as a percentage of income
-- Identify patterns in financial behavior
-
-### Account Balance History
-- Track account balance changes over time
-- Visualize balance trends
-- Identify significant balance fluctuations
-
-### Dashboard Summary
-- Quick overview of financial status
-- Current month's income, expenses, and savings
-- Total balance across all accounts
-- Active budgets and goals counts
-- Most used transaction categories
-
-## Export Features
-
-### Transaction Export
-- Export transactions to CSV format
-- Filter by date range
-- Include all transaction details
-
-### Monthly Reports
-- Generate comprehensive monthly financial reports
-- Include summary metrics and transaction details
-- Export to CSV format
-
-### Custom Transaction Reports
-- Create custom reports for specific date ranges
-- Include summary information and transaction details
-- Export to CSV format
-
-## API Endpoints
+- `GET /api/notifications/count` - Get unread count
+- `PATCH /api/notifications/{id}/read` - Mark notification as read
+- `PATCH /api/notifications/read-all` - Mark all as read
 
 ### Analytics
-- `GET /api/analytics/expenses-by-category` - Get expenses grouped by category
-- `GET /api/analytics/cash-flow/{year}/{month}` - Get monthly cash flow analysis
-- `GET /api/analytics/monthly-summary` - Get financial summary across multiple months
-- `GET /api/analytics/account-balance-history/{accountId}` - Get account balance history
-- `GET /api/analytics/dashboard-summary` - Get dashboard summary information
+- `GET /api/analytics/expenses-by-category` - Get expenses by category
+- `GET /api/analytics/cash-flow/{year}/{month}` - Get monthly cash flow
+- `GET /api/analytics/monthly-summary` - Get financial summary across months
+- `GET /api/analytics/account-balance-history/{accountId}` - Get balance history
+- `GET /api/analytics/dashboard-summary` - Get dashboard summary
 
 ### Export
 - `GET /api/export/transactions/csv` - Export transactions to CSV
 - `GET /api/export/reports/monthly/{year}/{month}` - Generate monthly report
-- `GET /api/export/reports/transactions` - Generate custom transaction report
+- `GET /api/export/reports/transactions` - Generate transaction report
 
-## Visualization Support
-The analytics endpoints are designed to provide data in formats suitable for:
-- Pie charts (expense breakdown)
-- Bar charts (cash flow analysis)
-- Line charts (monthly summary, account balance history)
-- Dashboard widgets (summary information)
+## Setup and Installation
 
-## Next Steps
-The application now has a complete set of features for personal finance management:
-- User authentication and management
-- Account, transaction, and category management
-- Budget planning and tracking
-- Financial goal setting and monitoring
-- Notification system
-- Analytics and reporting
+### Prerequisites
+- Java 17 or higher
+- Maven
+- Docker and Docker Compose (optional)
+- PostgreSQL (if not using Docker)
 
-Future enhancements could include:
-- Mobile application development
+### Running with Docker (Recommended)
+1. Clone the repository
+```
+git clone https://github.com/yourusername/finance-tracker.git
+cd finance-tracker
+```
+
+2. Start the application with Docker Compose
+```
+docker-compose up --build
+```
+
+3. Access the application at http://localhost:8080
+
+### Running Locally
+1. Clone the repository
+```
+git clone https://github.com/yourusername/finance-tracker.git
+cd finance-tracker
+```
+
+2. Configure database connection in `src/main/resources/application.properties`
+
+3. Build and run the application
+```
+mvn clean install
+mvn spring-boot:run
+```
+
+4. Access the application at http://localhost:8080
+
+## Testing the API
+
+1. Register a user
+```
+POST http://localhost:8080/api/auth/signup
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+```
+
+2. Login to get a token
+```
+POST http://localhost:8080/api/auth/signin
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+```
+
+3. Use the token for authenticated requests
+```
+Authorization: Bearer <your-jwt-token>
+```
+
+## Development
+
+The project was developed in four phases:
+
+1. **Phase 1**: Core setup and user management
+2. **Phase 2**: Core financial entities
+3. **Phase 3**: Budget and financial goals
+4. **Phase 4**: Analytics and reporting
+
+## Future Enhancements
+
+- Frontend development (React, Angular, or Vue.js)
+- Mobile application
 - Advanced forecasting and predictive analytics
-- Bill payment and scheduling features
-- Investment tracking and analysis
+- Bill payment scheduling
+- Investment portfolio tracking
 - Multi-currency support
 - Third-party financial service integrations
 
+## License
 
+This project is licensed under the MIT License - see the LICENSE file for details
 
+## Acknowledgments
 
-
-
+- Spring Boot and the Spring team
+- PostgreSQL
+- Docker
