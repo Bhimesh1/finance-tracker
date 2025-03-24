@@ -9,9 +9,9 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/finance_tracker
       - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_DATASOURCE_PASSWORD=Bhimeshpatil@1
   db:
-    image: postgres:14
+    image: postgres:16
     ports:
       - "5432:5432"
     environment:
